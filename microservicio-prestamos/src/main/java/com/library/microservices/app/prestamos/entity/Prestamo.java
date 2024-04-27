@@ -2,6 +2,7 @@ package com.library.microservices.app.prestamos.entity;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.library.microservices.app.commonusuarios.entity.User;
 
 import jakarta.persistence.Column;
@@ -26,13 +27,13 @@ public class Prestamo {
     private Long id;
     
     @Column(name = "fecha_incio")
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date createAt;
     
     @Column(name = "fecha_fin")
-    @Temporal(TemporalType.DATE)
-    private Date endDate;
+    private String endDate;
     
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "user_id")
 	private User user;
@@ -46,6 +47,7 @@ public class Prestamo {
     @PrePersist
     public void prePersist() {
         this.createAt = new Date();
+        this.estado = true;
         this.multa = 0;
     }
    
@@ -70,14 +72,14 @@ public class Prestamo {
 	/**
 	 * @return the endDate
 	 */
-	public Date getEndDate() {
+	public String getEndDate() {
 		return endDate;
 	}
 
 	/**
 	 * @param endDate the endDate to set
 	 */
-	public void setEndDate(Date endDate) {
+	public void setEndDate(String endDate) {
 		this.endDate = endDate;
 	}
 
@@ -109,24 +111,24 @@ public class Prestamo {
 		this.observacion = observacion;
 	}
 
-	/**
-	 * @return the user
-	 */
-	public User getUser() {
-		return user;
-	}
-
-	/**
-	 * @param user the user to set
-	 */
-	public void setUser(User user) {
-		this.user = user;
-	}
+//	/**
+//	 * @return the user
+//	 */
+//	public User getUser() {
+//		return user;
+//	}
+//
+//	/**
+//	 * @param user the user to set
+//	 */
+//	public void setUser(User user) {
+//		this.user = user;
+//	}
 
 	/**
 	 * @return the estado
 	 */
-	public boolean isEstado() {
+	public boolean getEstado() {
 		return estado;
 	}
 
@@ -149,6 +151,20 @@ public class Prestamo {
 	 */
 	public void setMulta(int multa) {
 		this.multa = multa;
+	}
+
+	/**
+	 * @return the user
+	 */
+	public User getUser() {
+		return user;
+	}
+
+	/**
+	 * @param user the user to set
+	 */
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 

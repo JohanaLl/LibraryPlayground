@@ -1,9 +1,11 @@
 package com.library.microservices.app.prestamos.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,11 +16,13 @@ import com.library.microservices.app.commons.controllers.CommonController;
 import com.library.microservices.app.prestamos.entity.Prestamo;
 import com.library.microservices.app.prestamos.services.PertamoService;
 
+
 @RestController
-@RequestMapping("/api/prestamos")
+@RequestMapping("/api/prestamo")
 public class PrestamoController extends CommonController<Prestamo, PertamoService>{
 
-	@PutMapping("/id")
+	 
+	@PutMapping("/{id}")
 	public ResponseEntity<?> editar(@RequestBody Prestamo prestamo, @PathVariable Long id) {
 		Optional<Prestamo> optPrestamo = this.service.findById(id);
 		
@@ -28,7 +32,20 @@ public class PrestamoController extends CommonController<Prestamo, PertamoServic
 		
 		Prestamo prestamoDB = optPrestamo.get();
 		prestamoDB.setEndDate(prestamo.getEndDate());
+		prestamoDB.setUser(prestamo.getUser());
+		prestamoDB.setObservacion(prestamo.getObservacion());
+		prestamoDB.setEstado(prestamo.getEstado());
+		prestamoDB.setMulta(prestamo.getMulta());
 		
 		return ResponseEntity.status(HttpStatus.CREATED).body(this.service.save(prestamoDB));
+	}
+	
+	/**
+	 * Método para buscar prestamos por el id de usuario
+	 */
+	@GetMapping("/findByUser/{id}")
+	public ResponseEntity<?> findPrestamosByUserId(@PathVariable Long id) {
+		List<Prestamo> prestamos = this.service.findPrestamosByUserId(id);
+		return ResponseEntity.ok(prestamos);
 	}
 }

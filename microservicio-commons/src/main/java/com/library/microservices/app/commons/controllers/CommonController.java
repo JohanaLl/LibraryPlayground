@@ -23,7 +23,7 @@ public class CommonController<E, S extends CommonService<E>> {
         return ResponseEntity.ok().body(service.findAll());
     }
 
-    @GetMapping("/id")
+    @GetMapping("/{id}")
     public ResponseEntity<?> findById(@PathVariable Long id) {
         Optional<E> userOp = service.findById(id);
 
@@ -39,7 +39,7 @@ public class CommonController<E, S extends CommonService<E>> {
         return ResponseEntity.status(HttpStatus.CREATED).body(entityDB);
     }
 
-    @DeleteMapping("/id")
+    @DeleteMapping("/{id}")
     public ResponseEntity<?> delete(@PathVariable Long id) {
         service.deleteById(id);
         return ResponseEntity.noContent().build();

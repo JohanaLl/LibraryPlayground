@@ -1,11 +1,6 @@
 package com.library.microservices.app.users.controllers;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Optional;
 
@@ -22,8 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.library.microservices.app.commons.controllers.CommonController;
 import com.library.microservices.app.commonusuarios.entity.User;
 import com.library.microservices.app.users.services.UserService;
-import org.springframework.web.bind.annotation.RequestParam;
-
 
 @RestController
 @RequestMapping("/api/usuarios")
@@ -32,27 +25,9 @@ public class UserController extends CommonController<User, UserService>{
     //Inyectar un valor de la variable de entorno
     @Value("${config.balanceador.test}")
     private String balanceadorTest;
-    
-    @GetMapping("sort")
-    public void getMethodName() {
-    	LinkedHashSet lhs = new LinkedHashSet();
-    	lhs.add(3);
-    	lhs.add(4);
-    	lhs.add(3);
-    	lhs.add(5);
-    	lhs.add(4);
-    	lhs.add(6);
-    	lhs.remove(4);
-    	
-    	Iterator itr = lhs.iterator();
-    	while (itr.hasNext()) {
-    		System.out.println(itr.next() + " ");
-    	}
-    }
-    
 
 
-    @PutMapping("/id")
+    @PutMapping("/{id}")
     public ResponseEntity<?> edit(@RequestBody User user, @PathVariable Long id) {
         Optional<User> userOp = service.findById(id);
 
