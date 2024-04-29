@@ -1,6 +1,9 @@
 # LibraryPlayground
 ## API desarrollada en Spring boot, con una arquitectura de microservicios.
-##### En este proyecto se incorporan los Generics para crear controladores y servicios comunes para todos los microservicios, que permiten realizar las operaciones CRUD para cada uno. También se crean librería que permiten utilizar los modelos de los servicios que se necesiten.
+##### En este proyecto se incorporan 
+- Generics para crear controladores, servicios y repositorios comunes para todos los microservicios, que permiten realizar las operaciones CRUD para cada uno.
+- Se crean librería que permiten utilizar los modelos de los servicios que se necesiten.
+- Se crea un servidor Eureka para registrar y exponer dinámicamente la ubicación de los microservicios.
 ### Definición SWAGGER para su consumo:
 ![image](https://github.com/JohanaLl/LibraryPlayground/assets/49319133/f2580cad-7c98-4247-99e5-c949c00b4546)
 ![image](https://github.com/JohanaLl/LibraryPlayground/assets/49319133/e3d8ac0e-7656-45e4-8cb7-63c1ce5af31a)
