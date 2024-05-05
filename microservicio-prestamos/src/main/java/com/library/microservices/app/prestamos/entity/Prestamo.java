@@ -47,7 +47,8 @@ public class Prestamo {
 	@JoinColumn(name = "user_id")
 	private User user;
 	
-    private String observacion;
+    @Column(name = "descripon")
+    private String description;
     
     @Column(name = "estado")
     private boolean state;
@@ -59,7 +60,7 @@ public class Prestamo {
     private int booksQuantity;
     
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToMany(fetch = FetchType.LAZY)
 	@JoinColumn(name = "libro_id")
     private List<Libro> books;
     

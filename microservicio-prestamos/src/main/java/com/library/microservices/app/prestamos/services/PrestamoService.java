@@ -5,7 +5,7 @@ import java.util.List;
 import com.library.microservices.app.commons.services.CommonService;
 import com.library.microservices.app.prestamos.entity.Prestamo;
 
-public interface PertamoService extends CommonService<Prestamo> {
+public interface PrestamoService extends CommonService<Prestamo> {
 
 	/**
 	 * Método para buscar prestamos por el id de usuario

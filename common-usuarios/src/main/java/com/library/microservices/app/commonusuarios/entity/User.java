@@ -22,9 +22,6 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    @Column(name = "identificacion")
-    private String identification;
-    
     @Column(name = "nombre")
     private String name;
     

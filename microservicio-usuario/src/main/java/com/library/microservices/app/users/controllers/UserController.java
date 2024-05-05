@@ -36,7 +36,6 @@ public class UserController extends CommonController<User, UserService>{
         User userDB = userOp.get();
         userDB.setName(user.getName());
         userDB.setLastName(user.getLastName());
-        userDB.setIdentification(user.getIdentification());
         userDB.setEmail(user.getEmail());
 
         return  ResponseEntity.status(HttpStatus.CREATED).body(service.save(userDB));

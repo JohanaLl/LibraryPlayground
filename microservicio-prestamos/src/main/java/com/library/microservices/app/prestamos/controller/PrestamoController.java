@@ -14,12 +14,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.library.microservices.app.commons.controllers.CommonController;
 import com.library.microservices.app.prestamos.entity.Prestamo;
-import com.library.microservices.app.prestamos.services.PertamoService;
+import com.library.microservices.app.prestamos.services.PrestamoService;
 
 
 @RestController
 @RequestMapping("/api/prestamo")
-public class PrestamoController extends CommonController<Prestamo, PertamoService>{
+public class PrestamoController extends CommonController<Prestamo, PrestamoService>{
 
 	 
 	@PutMapping("/{id}")
@@ -33,9 +33,11 @@ public class PrestamoController extends CommonController<Prestamo, PertamoServic
 		Prestamo prestamoDB = optPrestamo.get();
 		prestamoDB.setEndDate(prestamo.getEndDate());
 		prestamoDB.setUser(prestamo.getUser());
-		prestamoDB.setObservacion(prestamo.getObservacion());
+		prestamoDB.setDescription(prestamo.getDescription());
 		prestamoDB.setState(prestamo.isState());
 		prestamoDB.setPenalty(prestamo.getPenalty());
+		prestamoDB.setBooksQuantity(prestamo.getBooksQuantity());
+		prestamoDB.setBooks(prestamo.getBooks());
 		
 		return ResponseEntity.status(HttpStatus.CREATED).body(this.service.save(prestamoDB));
 	}

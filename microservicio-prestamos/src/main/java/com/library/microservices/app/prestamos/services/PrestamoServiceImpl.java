@@ -9,7 +9,7 @@ import com.library.microservices.app.prestamos.entity.Prestamo;
 import com.library.microservices.app.prestamos.repository.PrestamoRepository;
 
 @Service
-public class PrestamoServiceImpl extends CommonServiceImpl<Prestamo, PrestamoRepository> implements PertamoService{
+public class PrestamoServiceImpl extends CommonServiceImpl<Prestamo, PrestamoRepository> implements PrestamoService{
 
 	/**
 	 * Método para buscar prestamos por el id de usuario
