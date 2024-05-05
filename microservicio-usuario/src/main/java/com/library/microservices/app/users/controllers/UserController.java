@@ -26,7 +26,6 @@ public class UserController extends CommonController<User, UserService>{
     @Value("${config.balanceador.test}")
     private String balanceadorTest;
 
-
     @PutMapping("/{id}")
     public ResponseEntity<?> edit(@RequestBody User user, @PathVariable Long id) {
         Optional<User> userOp = service.findById(id);
@@ -37,6 +36,7 @@ public class UserController extends CommonController<User, UserService>{
         User userDB = userOp.get();
         userDB.setName(user.getName());
         userDB.setLastName(user.getLastName());
+        userDB.setIdentification(user.getIdentification());
         userDB.setEmail(user.getEmail());
 
         return  ResponseEntity.status(HttpStatus.CREATED).body(service.save(userDB));

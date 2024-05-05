@@ -34,8 +34,8 @@ public class PrestamoController extends CommonController<Prestamo, PertamoServic
 		prestamoDB.setEndDate(prestamo.getEndDate());
 		prestamoDB.setUser(prestamo.getUser());
 		prestamoDB.setObservacion(prestamo.getObservacion());
-		prestamoDB.setEstado(prestamo.getEstado());
-		prestamoDB.setMulta(prestamo.getMulta());
+		prestamoDB.setState(prestamo.isState());
+		prestamoDB.setPenalty(prestamo.getPenalty());
 		
 		return ResponseEntity.status(HttpStatus.CREATED).body(this.service.save(prestamoDB));
 	}
